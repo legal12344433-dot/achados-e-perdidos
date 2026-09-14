@@ -1,0 +1,4 @@
+.streamlit/secrets.toml
+itens.csv
+fotos/
+__pycache__/
