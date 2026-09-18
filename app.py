@@ -123,7 +123,7 @@ def mostrar_matches(tabela):
                 st.caption(f"Registrado por: {linha['usuario_perdido']}")
                 if linha["comentario_perdido"] and str(linha["comentario_perdido"]) != "nan":
                     st.caption(f"💬 \"{linha['comentario_perdido']}\"")
-                if linha["foto_perdido"] and str(linha["foto_perdido"]) != "nan":
+                if linha["foto_perdido"] and str(linha["foto_perdido"]) != "nan" and os.path.exists(os.path.join(PASTA_FOTOS, linha["foto_perdido"])):
                     caminho = os.path.join(PASTA_FOTOS, linha["foto_perdido"])
                     st.image(caminho, width=150)
                 else:
@@ -136,7 +136,7 @@ def mostrar_matches(tabela):
                     st.caption(f"📍 Deixado onde e com: {linha['entregue_com']}")
                 if linha["comentario_achado"] and str(linha["comentario_achado"]) != "nan":
                     st.caption(f"💬 \"{linha['comentario_achado']}\"")
-                if linha["foto_achado"] and str(linha["foto_achado"]) != "nan":
+                if linha["foto_achado"] and str(linha["foto_achado"]) != "nan" and os.path.exists(os.path.join(PASTA_FOTOS, linha["foto_achado"])):
                     caminho = os.path.join(PASTA_FOTOS, linha["foto_achado"])
                     st.image(caminho, width=150)
                 else:
@@ -229,7 +229,7 @@ if pagina == "Ver itens":
             col_foto, col_info = st.columns([1, 3])
 
             with col_foto:
-                if item["foto"] and str(item["foto"]) != "nan":
+                if item["foto"] and str(item["foto"]) != "nan" and os.path.exists(os.path.join(PASTA_FOTOS, item["foto"])):
                     caminho = os.path.join(PASTA_FOTOS, item["foto"])
                     st.image(caminho, width=100)
                 else:
@@ -274,7 +274,7 @@ if pagina ==  "Meus itens":
                 col_foto, col_info = st.columns([1, 3])
 
                 with col_foto:
-                    if item["foto"] and str(item["foto"]) != "nan":
+                    if item["foto"] and str(item["foto"]) != "nan" and os.path.exists(os.path.join(PASTA_FOTOS, item["foto"])):
                         caminho = os.path.join(PASTA_FOTOS, item["foto"])
                         st.image(caminho, width=100)
                     else:
@@ -293,4 +293,3 @@ if pagina ==  "Meus itens":
 
                     if not match_deste_item.empty:
                         st.success(f"🎉 encontramos {len(match_deste_item)} possível(is) match(es) para este item!")
-
